@@ -1,0 +1,41 @@
+{
+  "name": "sage",
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "coverage": "vitest --coverage",
+    "translate": "npm run translate:pot && npm run translate:update",
+    "translate:pot": "wp i18n make-pot . ./resources/lang/sage.pot --include=\"theme.json,patterns,app,resources\"",
+    "translate:update": "for file in ./resources/lang/*.po; do wp i18n update-po ./resources/lang/sage.pot $file; done",
+    "translate:compile": "npm run translate:mo && npm run translate:js",
+    "translate:js": "wp i18n make-json ./resources/lang --pretty-print",
+    "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
+  },
+  "devDependencies": {
+    "@roots/bud": "^2023.6.12",
+    "@roots/bud-cli": "^3.1.0",
+    "@roots/vite-plugin": "^1.0.2",
+    "@tailwindcss/vite": "^4.1.4",
+    "autoprefixer": "^10.4.21",
+    "laravel-vite-plugin": "^1.2.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.4",
+    "vite": "^6.3.2"
+  },
+  "version": "1.0.0",
+  "description": "<p align=\"center\">   <a href=\"https://roots.io/sage/\"><img alt=\"Sage\" src=\"https://cdn.roots.io/app/uploads/logo-sage.svg\" height=\"100\"></a> </p>",
+  "main": "postcss.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.4"
+  }
+}
